@@ -17,7 +17,7 @@ export function MovieCard({ movie }: Props) {
   const { moveToEdit } = pageContext;
 
   return (
-    <div className="card" onClick={moveToEdit}>
+    <div className="card" onClick={() => moveToEdit(movie._id)}>
       <img src={movie.poster} alt={movie.title} className="card-poster" />
       <h1 className="card-title">{movie.title}</h1>
       <h4 className="card-year">{movie.year}</h4>

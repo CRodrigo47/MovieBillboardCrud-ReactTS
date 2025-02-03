@@ -1,4 +1,4 @@
-export type Movie = {
+export type Movie = { //Creo el tipo Movie para poder utilizarlo en la aplicacion.
   imdb: Imdb;
   _id: string;
   title: string;

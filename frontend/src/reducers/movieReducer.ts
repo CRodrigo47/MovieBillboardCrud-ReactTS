@@ -1,8 +1,8 @@
 import { Movie } from "../types/movie";
 
-type State = Movie;
+type State = Movie; //Se crea un estado tipo Movie para poder controlarla en el reducer
 
-type Action =
+type Action = //Se crean las acciones que va a tener el reducer (Para poder editar el estado de la pelicula)
   | { type: "CHANGE_TITLE"; payload: string }
   | { type: "CHANGE_YEAR"; payload: number }
   | { type: "CHANGE_RATING"; payload: number }
@@ -12,19 +12,20 @@ type Action =
   | { type: "CHANGE_GENRES"; payload: string[] }
   | { type: "CHANGE_POSTER"; payload: string }
 
-  export const initialMovie: Movie = {
-    _id: "", 
-    title: "",
-    year: 0,
-    imdb: {
-      rating: 0,
-      votes: 0
-    },
-    director: "",
-    plot: "",
-    genres: [],
-    poster: ""
-  };
+   export const initialMovie: Movie = { //Se crea un estado inicial para poder editar a lo largo del reducer
+      _id: "", 
+      title: "",
+      year: 0,
+      imdb: {
+        rating: 0,
+        votes: 0
+      },
+      director: "",
+      plot: "",
+      genres: [],
+      poster: ""
+    };
+  
 
 export const movieReducer = (state: State, action: Action) => {
   switch (action.type) {

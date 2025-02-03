@@ -1,3 +1,4 @@
+/* eslint-disable react-refresh/only-export-components */
 import { createContext, ReactNode, useReducer } from "react";
 import { initialMovie, movieReducer } from "../reducers/movieReducer";
 import { Movie } from "../types/movie";
@@ -14,8 +15,9 @@ type MovieContextType = {
   changePoster: (poster: string) => void;
 };
 
-export const MovieContext = createContext<MovieContextType | undefined>(
-  undefined
+
+export const MovieContext = createContext<MovieContextType | null>(
+  null
 );
 
 type ProviderProps = {

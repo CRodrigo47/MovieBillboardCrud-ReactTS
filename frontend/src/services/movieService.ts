@@ -17,6 +17,22 @@ const getAllMovies = async () => {
   }
 };
 
+const getSingleMovie = async (id: string) => {
+  //Funcion para coger una sola pelicula. La usaremos en el SelectedMovie con el payload de currentPage.
+  try {
+    const response = await fetch(BASE_URL + "movie/" + id, { method: "GET"})
+    
+    if(!response.ok){
+      throw new Error("Error al cargar una sola pelicula")
+    }
+
+    const result = response.json()
+    return result
+  } catch (err){
+    console.error(err)
+  }
+}
+
 const addMovie = async (movie: Movie) => {
   //Funcion para añadir una pelicula
   try {
@@ -93,6 +109,7 @@ const deleteMovie = async (id: string) => {
 };
 
 const getAllGenres = async () => {
+  //Funcion para pillar todos los generos guardados en array
   try {
     const response = await fetch(BASE_URL + "genres", { method: "GET" });
 
@@ -107,4 +124,4 @@ const getAllGenres = async () => {
   }
 };
 
-export { getAllMovies, addMovie, editMovie, deleteMovie, getAllGenres }; //Exportamos las funciones para usarlas donde plazca
+export { getAllMovies, addMovie, editMovie, deleteMovie, getAllGenres, getSingleMovie }; //Exportamos las funciones para usarlas donde plazca
