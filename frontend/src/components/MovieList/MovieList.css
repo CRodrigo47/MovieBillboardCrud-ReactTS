@@ -1,0 +1,9 @@
+.movie-list-cards{
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.movie-list-cards > div{
+    max-width: min-content;
+    min-width: 20vw;
+}
