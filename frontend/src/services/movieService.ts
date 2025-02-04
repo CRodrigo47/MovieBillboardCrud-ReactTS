@@ -38,14 +38,17 @@ const addMovie = async (movie: Movie) => {
   try {
     const response = await fetch(BASE_URL, {
       method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
       body: JSON.stringify({
-        imdb: movie.imdb,
         title: movie.title,
-        year: movie.year,
         director: movie.director,
         plot: movie.plot,
         genres: movie.genres,
         poster: movie.poster,
+        year: movie.year,
+        imdb: movie.imdb,
       }),
     });
 

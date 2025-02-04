@@ -18,7 +18,7 @@ export const currentPageReducer = (state: State, action: Action) => {
     case "MOVE_TO_LIST":
       return {index: 0, movieId: ""};
     case "MOVE_TO_CREATE":
-      return {index: 0, movieId: ""};
+      return {index: 1, movieId: ""};
     case "MOVE_TO_EDIT":
       return { index: 2, movieId: action.payload };
     default:
