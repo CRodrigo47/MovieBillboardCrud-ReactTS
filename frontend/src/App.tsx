@@ -18,10 +18,12 @@ function App() {
 
   return (
     <MovieEditProvider>
-      <Header />
-      {currentPage === 0 ? <MovieList /> : <></>}
-      {currentPage === 1 ? <CreateMovie /> : <></>}
-      {currentPage === 2 ? <SelectedMovie /> : <></>}
+      <div className="app">
+        <Header />
+        {currentPage === 0 ? <MovieList /> : <></>}
+        {currentPage === 1 ? <CreateMovie /> : <></>}
+        {currentPage === 2 ? <SelectedMovie /> : <></>}
+      </div>
     </MovieEditProvider>
   );
 }

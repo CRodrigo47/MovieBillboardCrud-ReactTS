@@ -32,5 +32,6 @@ export function MovieCard({ movie }: Props) {
     </div>
     <button onClick={handleDelete}>ELIMINAR</button>
     </>
+
   );
 }

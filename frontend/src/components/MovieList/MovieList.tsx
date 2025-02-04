@@ -23,7 +23,9 @@ export function MovieList() {
 
   if(!movies){
     return(
-      <h1>Loading...</h1>
+      <div className="loader-container">
+        <div className="lds-ellipsis"><div></div><div></div><div></div><div></div></div>
+      </div>
     )
   }
 
@@ -39,9 +41,8 @@ export function MovieList() {
             />
           </div>
           <div className="category-bar">
-            <label>Genero</label>
             <select name="categories" onChange={(e) => handleGenreFilter(e)}>
-              <option value="all">Todas</option>
+              <option value="all">Todos</option>
               {genres.map((genre: string) => (
                 <option value={genre} key={genre}>
                   {genre}
@@ -52,7 +53,7 @@ export function MovieList() {
         </div>
         <div className="movie-list-cards">
           {movies.map((movie: Movie) => (
-            <div key={movie._id}>
+            <div key={movie._id} className="movie-card">
               <MovieCard movie={movie} />
             </div>
           ))}

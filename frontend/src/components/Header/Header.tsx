@@ -1,6 +1,7 @@
 import { useContext } from "react";
 import { CurrentPageContext } from "../../context/currentPage";
 import { MovieContext } from "../../context/movieEdit";
+import "./Header.css"
 
 
 export function Header() {
@@ -30,12 +31,12 @@ export function Header() {
 
   return (
     <header>
-      <h1 className="header-title">MOVIE BILLBOARD</h1>
+      <h1>Movie Billboard</h1>
       <div className="section-list">
-        <button onClick={changeToList}>
+        <button onClick={changeToList} className="nav-button">
           Lista de peliculas
         </button>
-        <button onClick={changeToCreate}>
+        <button onClick={changeToCreate} className="nav-button">
           Crear pelicula
         </button>
       </div>
