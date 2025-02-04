@@ -2,14 +2,24 @@ import { useContext, useState } from "react";
 import { MovieContext } from "../../context/movieEdit";
 import useGenres from "../../hooks/useGenres";
 import { addMovie } from "../../services/movieService";
+import { CurrentPageContext } from "../../context/currentPage";
 
 export function CreateMovie() {
   const movieContext = useContext(MovieContext);
   const [selectedGenre, setSelectedGenre] = useState("");
+  const currentPageContext = useContext(CurrentPageContext);
 
   if (!movieContext) {
     throw new Error("Estas usando el MovieContext en el lugar equivocado");
   }
+
+  if (!currentPageContext) {
+    throw new Error(
+      "Estas usando el CurrentPageContext en el lugar equivocado"
+    );
+  }
+
+  const { moveToList } = currentPageContext;
 
   const {
     movie,
@@ -19,21 +29,27 @@ export function CreateMovie() {
     changeVotes,
     changeDirector,
     changePlot,
-    changeGenres,
+    addGenre,
+    removeGenre,
     changePoster,
   } = movieContext;
 
   const { genres } = useGenres();
 
-  const addGenre = (genre: string) => {
-    const genreToAdd = genre;
-    changeGenres(genreToAdd);
+  const addGenreToState = () => {
+    const genreToAdd = selectedGenre;
+    if (movie.genres.includes(genreToAdd)) {
+      return console.error("No puedes añadir un genero ya existente.");
+    }
+    addGenre(genreToAdd);
+    setSelectedGenre("");
   };
 
   const handleAddMovie = async () => {
     const newMovie = movie;
     const response = await addMovie(newMovie);
     console.log(response);
+    moveToList();
   };
 
   return (
@@ -57,14 +73,14 @@ export function CreateMovie() {
           value={selectedGenre}
           onChange={(e) => setSelectedGenre(e.target.value)}
         >
-          <option value="">Selecciona un género</option>
+          <option>Selecciona un género</option>
           {genres.map((g) => (
             <option key={g} value={g}>
               {g}
             </option>
           ))}
         </select>
-        <button onClick={() => addGenre(selectedGenre)}>Añadir género</button>
+        <button onClick={addGenreToState}>Añadir género</button>
         <div className="imdb">
           <p>Rating</p>
           <input type="number" onChange={changeRating} />
@@ -78,21 +94,26 @@ export function CreateMovie() {
       <div className="preview">
         <img src={movie.poster} alt={movie.title} style={{ width: "12em" }} />
         <h1>{movie.title}</h1>
-        <h3>{movie.plot}</h3>
         {movie.year > 0 ? <h5>{movie.year}</h5> : <></>}
         <h5>{movie.director}</h5>
+        <h3>{movie.plot}</h3>
         <div>
           <section>
             {movie.genres.map(
               (
                 g //Recorremos el array de generos y dotamos el parrafo con una key unica (En este caso, el nombre del genero.)
               ) => (
-                <p key={g}>{g}</p>
+                <div key={g}>
+                  <p>{g}</p>
+                  <button onClick={() => removeGenre(g)}>
+                    eliminar genero
+                  </button>
+                </div>
               )
             )}
           </section>
-          <p>{movie.imdb.rating}</p>
-          <p>{movie.imdb.votes}</p>
+          {movie.imdb.rating > 0 ? <p>{movie.imdb.rating}</p> : <></>}
+          {movie.imdb.votes > 0 ? <p>{movie.imdb.votes}</p> : <></>}
         </div>
       </div>
     </>

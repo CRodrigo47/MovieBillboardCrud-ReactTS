@@ -11,8 +11,11 @@ type Action = //Se crean las acciones que va a tener el reducer (Para poder edit
     | { type: "CHANGE_VOTES"; payload: ChangeEvent<HTMLInputElement> }
     | { type: "CHANGE_DIRECTOR"; payload: ChangeEvent<HTMLInputElement> }
     | { type: "CHANGE_PLOT"; payload: ChangeEvent<HTMLInputElement> }
-    | { type: "CHANGE_GENRES"; payload: string }
-    | { type: "CHANGE_POSTER"; payload: ChangeEvent<HTMLInputElement> };
+    | { type: "ADD_GENRE"; payload: string }
+    | { type: "REMOVE_GENRE"; payload: string }
+    | { type: "CHANGE_POSTER"; payload: ChangeEvent<HTMLInputElement> }
+    | { type: "RESET_MOVIE"}
+    | { type: "MOVIE_TO_EDIT"; payload: Movie };
 
 export const initialMovie: Movie = {
   //Se crea un estado inicial para poder editar a lo largo del reducer
@@ -55,11 +58,20 @@ export const movieReducer = (state: State, action: Action) => {
     case "CHANGE_PLOT": {
       return { ...state, plot: action.payload.target.value };
     }
-    case "CHANGE_GENRES": {
+    case "ADD_GENRE": {
       return { ...state, genres: [...state.genres, action.payload] };
+    }
+    case "REMOVE_GENRE": {
+      return { ...state, genres: state.genres.filter(g => g!==action.payload) };
     }
     case "CHANGE_POSTER": {
       return { ...state, poster: action.payload.target.value };
+    }
+    case "RESET_MOVIE": {
+      return {...initialMovie}
+    }
+    case "MOVIE_TO_EDIT": {
+      return action.payload
     }
     default:
       return state;

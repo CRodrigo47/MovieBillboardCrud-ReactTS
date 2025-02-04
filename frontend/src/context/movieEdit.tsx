@@ -11,14 +11,14 @@ type MovieContextType = {
   changeVotes: (rating: ChangeEvent<HTMLInputElement>) => void;
   changeDirector: (director: ChangeEvent<HTMLInputElement>) => void;
   changePlot: (plot: ChangeEvent<HTMLInputElement>) => void;
-  changeGenres: (genres: string) => void;
+  addGenre: (genres: string) => void;
+  removeGenre: (genres: string) => void;
   changePoster: (poster: ChangeEvent<HTMLInputElement>) => void;
+  resetMovie: () => void;
+  movieToEdit: (movie: Movie) => void;
 };
 
-
-export const MovieContext = createContext<MovieContextType | null>(
-  null
-);
+export const MovieContext = createContext<MovieContextType | null>(null);
 
 type ProviderProps = {
   children: ReactNode;
@@ -63,9 +63,15 @@ export function MovieEditProvider({ children }: ProviderProps) {
       payload: plot,
     });
 
-  const changeGenres = (genres: string) =>
+  const addGenre = (genres: string) =>
     dispatch({
-      type: "CHANGE_GENRES",
+      type: "ADD_GENRE",
+      payload: genres,
+    });
+
+  const removeGenre = (genres: string) =>
+    dispatch({
+      type: "REMOVE_GENRE",
       payload: genres,
     });
 
@@ -73,6 +79,17 @@ export function MovieEditProvider({ children }: ProviderProps) {
     dispatch({
       type: "CHANGE_POSTER",
       payload: poster,
+    });
+
+  const resetMovie = () =>
+    dispatch({
+      type: "RESET_MOVIE",
+    });
+
+  const movieToEdit = (movie: Movie) =>
+    dispatch({
+      type: "MOVIE_TO_EDIT",
+      payload: movie,
     });
 
   return (
@@ -85,8 +102,11 @@ export function MovieEditProvider({ children }: ProviderProps) {
         changeVotes,
         changeDirector,
         changePlot,
-        changeGenres,
+        addGenre,
+        removeGenre,
         changePoster,
+        resetMovie,
+        movieToEdit,
       }}
     >
       {children}

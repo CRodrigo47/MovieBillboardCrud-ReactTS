@@ -21,6 +21,12 @@ export function MovieList() {
     setSearch(filteredSearch);
   };
 
+  if(!movies){
+    return(
+      <h1>Loading...</h1>
+    )
+  }
+
   return (
     <>
       <div className="movie-list-container">

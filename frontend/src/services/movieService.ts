@@ -69,6 +69,9 @@ const editMovie = async (movie: Movie) => {
   try {
     const response = await fetch(BASE_URL + movie._id, {
       method: "PUT",
+      headers: {
+        "Content-Type": "application/json",
+      },
       body: JSON.stringify({
         imdb: movie.imdb,
         title: movie.title,

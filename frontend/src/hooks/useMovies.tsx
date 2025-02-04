@@ -10,7 +10,7 @@ type Props = {
 export default function useMovies({ search, genreFilter }: Props) {
 
 
-  const [movies, setMovies] = useState<Movie[]>([]);
+  const [movies, setMovies] = useState<Movie[] | null>(null);
 
   useEffect(() => {
     const fetchMovies = async () => {
@@ -19,11 +19,11 @@ export default function useMovies({ search, genreFilter }: Props) {
       setMovies(result.status);
     };
     fetchMovies();
-  }, []);
+  }, [movies]);
 
   const filteredMovies = useMemo(() => {
     //Evitamos que cada vez que se filtre la lista se tenga que recargar el componente con el useEffect.
-    return movies.filter(
+    return movies?.filter(
       (movie: Movie) =>
         movie.title.toLowerCase().includes(search.toLowerCase()) &&
         (movie.genres.includes(genreFilter) || genreFilter === "all")
