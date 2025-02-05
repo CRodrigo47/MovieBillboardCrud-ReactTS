@@ -5,6 +5,7 @@ import { Movie } from "../types/movie";
 
 type MovieContextType = {
   //Declaramos todos los estados y funciones del contexto.
+  //Los ChangeEvent<HTMLElement> son los cambios que reciben los input del HTML.
   movie: Movie;
   changeTitle: (title: ChangeEvent<HTMLInputElement>) => void;
   changeYear: (year: ChangeEvent<HTMLInputElement>) => void;

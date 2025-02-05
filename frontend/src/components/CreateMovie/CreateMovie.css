@@ -57,3 +57,30 @@
 .create-plot {
   max-width: 70%;
 }
+
+.imdb-create{
+  display: flex;
+  flex-direction: row;
+}
+
+.imdb-create input {
+  font-family: "Be Vietnam Pro", serif;
+  width: 6vw;
+  height: 2rem;
+  font-size: 1rem;
+  border-radius: 1em;
+  padding-left: 0.5em;
+  padding-block: 0.7em;
+  background-color: var(--bg-color-secondary);
+  border: none;
+  outline-color: var(--primary-color);
+  color: var(--text-color);
+  transition: 0.3s;
+  text-align: center;
+  margin-inline: 10px;
+}
+
+.imdb-create input:focus {
+  transition: 0.3s;
+  outline: 1px solid var(--primary-color);
+}

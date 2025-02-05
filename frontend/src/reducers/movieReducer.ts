@@ -34,6 +34,7 @@ export const initialMovie: Movie = {
 
 export const movieReducer = (state: State, action: Action) => {
   //El Switch con las diferentes funciones del reducer
+  //Es importante saber que lo que devuevle cada funcion es UN ESTADO, que luego tendremos que guardar.
   switch (action.type) {
     case "CHANGE_TITLE": {
       return { ...state, title: action.payload.target.value };
@@ -69,9 +70,11 @@ export const movieReducer = (state: State, action: Action) => {
       return { ...state, poster: action.payload.target.value };
     }
     case "RESET_MOVIE": {
+      //Devolvemos el estado a su valor objeto vacio
       return {...initialMovie}
     }
     case "MOVIE_TO_EDIT": {
+      //Al pasarle una pelicula como argumento, devolvemos esa misma pelicula en forma de estado para poder guardarla de manera global.
       return action.payload
     }
     default:

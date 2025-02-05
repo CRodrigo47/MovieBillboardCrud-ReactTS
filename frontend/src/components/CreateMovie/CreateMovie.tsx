@@ -22,7 +22,7 @@ export function CreateMovie() {
     );
   }
 
-  const { moveToList } = currentPageContext;
+  const { moveToList } = currentPageContext; //Para movernos a la lista de peliculas una vez hemos terminado de crear una pelicula
 
   const {
     movie,
@@ -39,15 +39,21 @@ export function CreateMovie() {
 
   const { genres } = useGenres();
 
+  //Funcion para introducir el genero al estado global de pelicula
+  //Además, validamos que no es un genero ya introducido y si no lo selecciona vacio.
   const addGenreToState = () => {
     const genreToAdd = selectedGenre;
     if (movie.genres.includes(genreToAdd)) {
       return console.error("No puedes añadir un genero ya existente.");
     }
+    if (genreToAdd === "" || genreToAdd === "Selecciona un género") {
+      return console.error("Debes seleccionar un género.");
+    }
     addGenre(genreToAdd);
     setSelectedGenre("");
   };
 
+  //Funcion para introducir la pelicula una vez esté creada
   const handleAddMovie = async () => {
     const newMovie = movie;
     const response = await addMovie(newMovie);
@@ -77,11 +83,13 @@ export function CreateMovie() {
             className="form-plot"
           />
           <div className="genres-container">
+            {/* El select indica el valor que tenemos seleccionado en la lista de opciones. Al cambiarlo, cambiamos el estado de selectedGenre para usarlo mas adelante */}
             <select
               value={selectedGenre}
               onChange={(e) => setSelectedGenre(e.target.value)}
             >
               <option>Selecciona un género</option>
+              {/* Las option son las diferentes opciones del elemento Select. Aqui pongo uno base para seleccionar un genero y luego pongo el resto de generos en un bucle. */}
               {genres.map((g) => (
                 <option key={g} value={g}>
                   {g}
@@ -91,15 +99,22 @@ export function CreateMovie() {
             <button onClick={addGenreToState}>Añadir género</button>
           </div>
 
-          <div className="imdb">
-            <p>Rating</p>
-            <input type="number" onChange={changeRating} />
-            <p>Votos</p>
-            <input type="number" onChange={changeVotes} />
+          <div className="imdb-create">
+            <div className="rating-create">
+              <p>Rating</p>
+              <input type="number" onChange={changeRating} />
+            </div>
+            <div className="votes-create">
+              <p>Votos</p>
+              <input type="number" onChange={changeVotes} />
+            </div>
           </div>
-          <button onClick={handleAddMovie} className="form-button">Subir pelicula</button>
+          <button onClick={handleAddMovie} className="form-button">
+            Subir pelicula
+          </button>
         </div>
 
+              {/* Aqui mostraremos la preview de lo que está poniendo el usuario. */}
         <div className="preview">
           <h1>Preview de la pelicula</h1>
           <img src={movie.poster} alt={movie.title} style={{ width: "15em" }} />

@@ -23,6 +23,7 @@ export function Header() {
   //Funcion para resetear el estado global de pelicula.
   const {resetMovie} = movieContext
 
+  //Ambas funciones de abajo sirven para cambiar de componente Y ADEMAS para resetear la pelicula global. Con esto nos aseguramos de que la pelicula se limpia con cada accion del usuario.
   const changeToList = () =>{
     moveToList()
     resetMovie()
