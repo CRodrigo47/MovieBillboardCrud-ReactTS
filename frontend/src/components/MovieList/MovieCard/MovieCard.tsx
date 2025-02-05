@@ -10,13 +10,16 @@ type Props = {
 
 export function MovieCard({ movie }: Props) {
   const pageContext = useContext(CurrentPageContext);
+  //Llamamos al contexto de page context para poder controler en que pagina estamos y cambiar entre componentes
 
   if (!pageContext) {
     throw new Error("Estas usando el pageContext en el lugar equivocado.");
   }
 
+  //Sacamos el moveToEdit para poder editar una pelicula dandole click
   const { moveToEdit } = pageContext;
 
+  //Funcion para eliminar la pelicula desde la card
   const handleDelete = async () => {
     const idMovie = movie._id
     const response = await deleteMovie(idMovie)

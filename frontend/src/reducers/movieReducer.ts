@@ -33,6 +33,7 @@ export const initialMovie: Movie = {
 };
 
 export const movieReducer = (state: State, action: Action) => {
+  //El Switch con las diferentes funciones del reducer
   switch (action.type) {
     case "CHANGE_TITLE": {
       return { ...state, title: action.payload.target.value };

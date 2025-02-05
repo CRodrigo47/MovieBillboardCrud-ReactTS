@@ -8,6 +8,7 @@ import { CurrentPageProvider } from "./context/currentPage.tsx";
 createRoot(document.getElementById("root")!).render(
   <StrictMode>
     <CurrentPageProvider>
+      {/* Englobamos la aplicacion en el provider del CurrentPage para poder ir cambiando de pagina desde cualquier lugar de la aplicacion. */}
       <App/>
     </CurrentPageProvider>
   </StrictMode>

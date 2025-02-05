@@ -9,21 +9,21 @@ import { SelectedMovie } from "./components/SelectedMovie/SelectedMovie";
 
 function App() {
   const pageContext = useContext(CurrentPageContext);
+   //Llamamos al contexto de page context para poder controler en que pagina estamos y cambiar entre componentes
 
   if (!pageContext) {
     throw new Error("No estas usando el contexto donde toca.");
   }
 
-  const { currentPage } = pageContext;
+  const { currentPage } = pageContext; //Sacamos solo la pagina, que es lo unico que vamos a comprobar
 
   return (
     <MovieEditProvider>
-      <div className="app">
+      {/* Englobamos todos los componentes con el provider del MovieEdit para poder editar el estado global de peliculas y acceder a sus controles del reducer */}
         <Header />
         {currentPage === 0 ? <MovieList /> : <></>}
         {currentPage === 1 ? <CreateMovie /> : <></>}
         {currentPage === 2 ? <SelectedMovie /> : <></>}
-      </div>
     </MovieEditProvider>
   );
 }

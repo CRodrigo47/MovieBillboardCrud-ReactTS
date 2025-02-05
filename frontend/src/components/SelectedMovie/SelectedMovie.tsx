@@ -7,21 +7,28 @@ import "./SelectedMovie.css";
 
 export function SelectedMovie() {
   const pageContext = useContext(CurrentPageContext);
+  //Llamamos al contexto de page context para poder controler en que pagina estamos y cambiar entre componentes
 
   if (!pageContext) {
     throw new Error("No estas usando el contexto en el lugar correcto.");
   }
 
-  const { moviePayload, moveToList } = pageContext;
+  //Sacamos el moviePayload para saber el id de la pelicula seleccionada y moveToList para volver a la lista de peliculas una vez la actualizamos.
+  //Luego, sacamos la pelicula con el Payload y el contexto para editar la pelicula.
+  //Tambien sacamos todos los generos para varias operaciones.
+  const { moviePayload, moveToList } = pageContext; 
   const { selectedMovie, editMovieTools } = useMovie({ id: moviePayload });
   const { genres } = useGenres();
 
+  //Estado del genero seleccionado para ir introduciendolo en los generos de la pelicula.
   const [selectedGenre, setSelectedGenre] = useState<string>("");
 
+  //Funcion para introducir el genero al estado de genero seleccionado
   const handleSelectedGenres = (e: ChangeEvent<HTMLSelectElement>) => {
     setSelectedGenre(e.target.value);
   };
 
+  //Funcion para introducir el genero al estado global de pelicula
   const addGenres = () => {
     const genresToAdd = selectedGenre;
     if (movie.genres.includes(genresToAdd)) {
@@ -31,6 +38,7 @@ export function SelectedMovie() {
     setSelectedGenre("");
   };
 
+  //Funcion para actualizar la pelicula en la API
   const handleUpdateMovie = async () => {
     const newMovie = movie;
     const response = await editMovie(newMovie);
@@ -38,6 +46,7 @@ export function SelectedMovie() {
     moveToList();
   };
 
+  //Todo lo que sacamos del contexto de la pelicula
   const {
     movie,
     changeTitle,
@@ -51,6 +60,7 @@ export function SelectedMovie() {
     changePoster,
   } = editMovieTools;
 
+  //Un loader bien chulo mientras carga la pelicula!
   if (!selectedMovie) {
     return(
       <div className="loader-container">

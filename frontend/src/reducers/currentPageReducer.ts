@@ -1,14 +1,15 @@
-type State = {
+type State = { //Se crea el tipo que va a manejar el estado de las paginas
   index: number;
   movieId: string;
 };
 
-type Action =
+type Action = //Las acciones que nos moveran entre las paginas y entregará el payload del 
   | { type: "MOVE_TO_LIST" }
   | { type: "MOVE_TO_CREATE" }
   | { type: "MOVE_TO_EDIT"; payload: string };
 
 export const initialPage = {
+  //Estado inicial del "enrutado". Empezará por el 0 para que muestre la lista de peliculas
   index: 0,
   movieId: "",
 };

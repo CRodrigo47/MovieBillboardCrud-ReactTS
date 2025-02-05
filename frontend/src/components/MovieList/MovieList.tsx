@@ -6,21 +6,24 @@ import { MovieCard } from "./MovieCard/MovieCard";
 import "./MovieList.css";
 
 export function MovieList() {
-  const [genreFilter, setGenresFilter] = useState("all");
-  const [search, setSearch] = useState("");
-  const { movies } = useMovies({ search, genreFilter });
-  const { genres } = useGenres();
+  const [genreFilter, setGenresFilter] = useState("all"); //Filtros de generos para pasarselos al useMovies
+  const [search, setSearch] = useState(""); //Filtro de busqueda
+  const { movies } = useMovies({ search, genreFilter }); //Generamos las peliculas del custom hook
+  const { genres } = useGenres(); //Generamos los generos del custom hook
 
+  //Cambiamos los generos filtrados para poder filtrar las pelis
   const handleGenreFilter = (event: React.ChangeEvent<HTMLSelectElement>) => {
     const filteredGenres = event.target.value;
     setGenresFilter(filteredGenres);
   };
 
+  //Cambiamos el filtro del input para poder filtrar por texto
   const handleSearchFilter = (event: React.ChangeEvent<HTMLInputElement>) => {
     const filteredSearch = event.target.value;
     setSearch(filteredSearch);
   };
 
+  //Un loader bien chulo
   if(!movies){
     return(
       <div className="loader-container">

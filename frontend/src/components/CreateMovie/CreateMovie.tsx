@@ -7,8 +7,10 @@ import "./CreateMovie.css";
 
 export function CreateMovie() {
   const movieContext = useContext(MovieContext);
+  //Llamamos al contexto de pelicula
   const [selectedGenre, setSelectedGenre] = useState("");
   const currentPageContext = useContext(CurrentPageContext);
+  //Llamamos al contexto de page context para poder controler en que pagina estamos y cambiar entre componentes
 
   if (!movieContext) {
     throw new Error("Estas usando el MovieContext en el lugar equivocado");

@@ -4,6 +4,7 @@ import { initialMovie, movieReducer } from "../reducers/movieReducer";
 import { Movie } from "../types/movie";
 
 type MovieContextType = {
+  //Declaramos todos los estados y funciones del contexto.
   movie: Movie;
   changeTitle: (title: ChangeEvent<HTMLInputElement>) => void;
   changeYear: (year: ChangeEvent<HTMLInputElement>) => void;
@@ -19,13 +20,15 @@ type MovieContextType = {
 };
 
 export const MovieContext = createContext<MovieContextType | null>(null);
+//Exportamos el contexto para poder usarlo dentro de su provider
 
 type ProviderProps = {
+  //Es necesario para el prop del Provider
   children: ReactNode;
 };
 
 export function MovieEditProvider({ children }: ProviderProps) {
-  const [state, dispatch] = useReducer(movieReducer, initialMovie);
+  const [state, dispatch] = useReducer(movieReducer, initialMovie); //Necesitamos el state y dispatch para usar el reducer, y pasarle la funcion reducer y un estado inicial
 
   const changeTitle = (title: ChangeEvent<HTMLInputElement>) =>
     dispatch({
@@ -92,6 +95,7 @@ export function MovieEditProvider({ children }: ProviderProps) {
       payload: movie,
     });
 
+  //Ahora invocamos el provider, las value son todo lo que le tenemos que pasar por contexto (en el caso del estado, indicar que variable es el estado) y envolver al children
   return (
     <MovieContext.Provider
       value={{
