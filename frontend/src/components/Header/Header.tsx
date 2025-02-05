@@ -31,7 +31,7 @@ export function Header() {
 
   return (
     <header>
-      <h1>Movie Billboard</h1>
+      <h1>Cartelera</h1>
       <div className="section-list">
         <button onClick={changeToList} className="nav-button">
           Lista de peliculas

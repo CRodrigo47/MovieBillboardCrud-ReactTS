@@ -3,6 +3,7 @@ import { MovieContext } from "../../context/movieEdit";
 import useGenres from "../../hooks/useGenres";
 import { addMovie } from "../../services/movieService";
 import { CurrentPageContext } from "../../context/currentPage";
+import "./CreateMovie.css";
 
 export function CreateMovie() {
   const movieContext = useContext(MovieContext);
@@ -53,69 +54,77 @@ export function CreateMovie() {
   };
 
   return (
-    <>
+    <div className="component-container">
       <div className="header">
-        <h1>CREAR PELICULA</h1>
+        <h1>Crear pelicula</h1>
       </div>
-      <div className="inputs">
-        <p>Link del poster</p>
-        <input type="text" onChange={changePoster} />
-        <p>Titulo</p>
-        <input type="text" onChange={changeTitle} />
-        <p>Año</p>
-        <input type="number" onChange={changeYear} />
-        <p>Director</p>
-        <input type="text" onChange={changeDirector} />
-        <p>Plot</p>
-        <input type="text" onChange={changePlot} />
-        <p>Generos</p>
-        <select
-          value={selectedGenre}
-          onChange={(e) => setSelectedGenre(e.target.value)}
-        >
-          <option>Selecciona un género</option>
-          {genres.map((g) => (
-            <option key={g} value={g}>
-              {g}
-            </option>
-          ))}
-        </select>
-        <button onClick={addGenreToState}>Añadir género</button>
-        <div className="imdb">
-          <p>Rating</p>
-          <input type="number" onChange={changeRating} />
-          <p>Votos</p>
-          <input type="number" onChange={changeVotes} />
-        </div>
-        <button onClick={handleAddMovie}>SUBIR PELICULA</button>
-      </div>
+      <div className="create-container">
+        <div className="form-inputs">
+          <p>Link del poster</p>
+          <input type="text" onChange={changePoster} />
+          <p>Titulo</p>
+          <input type="text" onChange={changeTitle} />
+          <p>Año</p>
+          <input type="number" onChange={changeYear} />
+          <p>Director</p>
+          <input type="text" onChange={changeDirector} />
+          <p>Plot</p>
+          <textarea
+            onChange={changePlot}
+            value={movie.plot}
+            className="form-plot"
+          />
+          <div className="genres-container">
+            <select
+              value={selectedGenre}
+              onChange={(e) => setSelectedGenre(e.target.value)}
+            >
+              <option>Selecciona un género</option>
+              {genres.map((g) => (
+                <option key={g} value={g}>
+                  {g}
+                </option>
+              ))}
+            </select>
+            <button onClick={addGenreToState}>Añadir género</button>
+          </div>
 
-      <h1>PREVIEW DE LA PELICULA</h1>
-      <div className="preview">
-        <img src={movie.poster} alt={movie.title} style={{ width: "12em" }} />
-        <h1>{movie.title}</h1>
-        {movie.year > 0 ? <h5>{movie.year}</h5> : <></>}
-        <h5>{movie.director}</h5>
-        <h3>{movie.plot}</h3>
-        <div>
-          <section>
-            {movie.genres.map(
-              (
-                g //Recorremos el array de generos y dotamos el parrafo con una key unica (En este caso, el nombre del genero.)
-              ) => (
-                <div key={g}>
-                  <p>{g}</p>
-                  <button onClick={() => removeGenre(g)}>
-                    eliminar genero
-                  </button>
-                </div>
-              )
-            )}
-          </section>
-          {movie.imdb.rating > 0 ? <p>{movie.imdb.rating}</p> : <></>}
-          {movie.imdb.votes > 0 ? <p>{movie.imdb.votes}</p> : <></>}
+          <div className="imdb">
+            <p>Rating</p>
+            <input type="number" onChange={changeRating} />
+            <p>Votos</p>
+            <input type="number" onChange={changeVotes} />
+          </div>
+          <button onClick={handleAddMovie} className="form-button">Subir pelicula</button>
+        </div>
+
+        <div className="preview">
+          <h1>Preview de la pelicula</h1>
+          <img src={movie.poster} alt={movie.title} style={{ width: "15em" }} />
+          <h1>{movie.title}</h1>
+          {movie.year > 0 ? <h4>{movie.year}</h4> : <></>}
+          <h4>{movie.director}</h4>
+          <h4 className="create-plot">{movie.plot}</h4>
+          <div>
+            <section className="genres-section-create">
+              {movie.genres.map(
+                (
+                  g //Recorremos el array de generos y dotamos el parrafo con una key unica (En este caso, el nombre del genero.)
+                ) => (
+                  <div key={g} className="single-genre-create">
+                    <p>{g}</p>
+                    <button onClick={() => removeGenre(g)}>
+                      Eliminar género
+                    </button>
+                  </div>
+                )
+              )}
+            </section>
+            {movie.imdb.rating > 0 ? <p>{movie.imdb.rating}</p> : <></>}
+            {movie.imdb.votes > 0 ? <p>{movie.imdb.votes}</p> : <></>}
+          </div>
         </div>
       </div>
-    </>
+    </div>
   );
 }

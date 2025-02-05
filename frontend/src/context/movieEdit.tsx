@@ -10,7 +10,7 @@ type MovieContextType = {
   changeRating: (rating: ChangeEvent<HTMLInputElement>) => void;
   changeVotes: (rating: ChangeEvent<HTMLInputElement>) => void;
   changeDirector: (director: ChangeEvent<HTMLInputElement>) => void;
-  changePlot: (plot: ChangeEvent<HTMLInputElement>) => void;
+  changePlot: (plot: ChangeEvent<HTMLTextAreaElement>) => void;
   addGenre: (genres: string) => void;
   removeGenre: (genres: string) => void;
   changePoster: (poster: ChangeEvent<HTMLInputElement>) => void;
@@ -57,7 +57,7 @@ export function MovieEditProvider({ children }: ProviderProps) {
       payload: director,
     });
 
-  const changePlot = (plot: ChangeEvent<HTMLInputElement>) =>
+  const changePlot = (plot: ChangeEvent<HTMLTextAreaElement>) =>
     dispatch({
       type: "CHANGE_PLOT",
       payload: plot,

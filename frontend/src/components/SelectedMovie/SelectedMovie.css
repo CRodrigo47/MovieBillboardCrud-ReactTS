@@ -1,0 +1,239 @@
+.edit-movie-container {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.form-inputs {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  gap: 2vh;
+}
+
+.form-inputs > input {
+  font-family: "Be Vietnam Pro", serif;
+  width: 20vw;
+  height: 2rem;
+  font-size: 1rem;
+  border-radius: 1em;
+  padding-left: 0.5em;
+  padding-block: 0.7em;
+  background-color: var(--bg-color-secondary);
+  border: none;
+  outline-color: var(--primary-color);
+  color: var(--text-color);
+  transition: 0.3s;
+  text-align: center;
+}
+
+.form-inputs > input:focus {
+  transition: 0.3s;
+  outline: 1px solid var(--primary-color);
+}
+
+.form-plot {
+  font-family: "Be Vietnam Pro", serif;
+  overflow-y: hidden;
+  width: 20vw;
+  min-height: 10vh;
+  font-size: 1rem;
+  border-radius: 1em;
+  padding: 0.5em;
+  background-color: var(--bg-color-secondary);
+  border: none;
+  outline-color: var(--primary-color);
+  color: var(--text-color);
+  transition: 0.3s;
+  text-align: left;
+  resize: vertical;
+  white-space: pre-wrap;
+  overflow-wrap: break-word;
+}
+
+.form-plot:focus {
+  outline: 1px solid var(--primary-color);
+}
+
+.imdb > input {
+  font-family: "Be Vietnam Pro", serif;
+  width: 6vw;
+  height: 2rem;
+  font-size: 1rem;
+  border-radius: 1em;
+  padding-left: 0.5em;
+  padding-block: 0.7em;
+  background-color: var(--bg-color-secondary);
+  border: none;
+  outline-color: var(--primary-color);
+  color: var(--text-color);
+  transition: 0.3s;
+  text-align: center;
+  margin-inline: 10px;
+}
+
+.imdb > input:focus {
+  transition: 0.3s;
+  outline: 1px solid var(--primary-color);
+}
+
+.genres-container > select {
+  font-family: "Be Vietnam Pro", serif;
+  width: 12vw;
+  padding: 10px;
+  border-radius: 5px;
+  background-color: var(--bg-color-secondary);
+  font-size: 1em;
+  cursor: pointer;
+  color: var(--text-color);
+  border-color: var(--primary-color);
+}
+
+.genres-container > select:focus {
+  outline-color: var(--primary-color);
+  outline: none;
+}
+
+.genres-container > select > option {
+  padding: 10px;
+  outline-color: var(--primary-color);
+  border-color: var(--primary-color);
+}
+
+.genres-container > button {
+  font-family: "Be Vietnam Pro", serif;
+  margin: 10px;
+  width: 9vw;
+  padding: 7px;
+  border-radius: 5px;
+  background-color: var(--bg-color-secondary);
+  font-size: 1em;
+  cursor: pointer;
+  color: var(--text-color);
+  border-color: var(--primary-color);
+  transition: .3s;
+}
+
+.genres-container > button:hover {
+    background-color: var(--primary-color);
+  }
+
+.genres-section {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+}
+
+.single-genre > button {
+  font-family: "Be Vietnam Pro", serif;
+  width: 9vw;
+  padding: 7px;
+  border-radius: 5px;
+  background-color: var(--bg-color-secondary);
+  font-size: 1em;
+  cursor: pointer;
+  color: var(--text-color);
+  border-color: var(--primary-color);
+  transition: .3s;
+}
+
+.single-genre > button:hover {
+    background-color: var(--primary-color);
+  }
+
+.form-button {
+  font-family: "Be Vietnam Pro", serif;
+  width: 15vw;
+  padding: 15px;
+  border-radius: 5px;
+  background-color: var(--bg-color-secondary);
+  font-size: 1.2em;
+  cursor: pointer;
+  color: var(--text-color);
+  border-color: var(--primary-color);
+  transition: .3s;
+}
+
+.form-button:hover {
+    background-color: var(--primary-color);
+  }
+
+input[type="number"]::-webkit-inner-spin-button,
+input[type="number"]::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+.loader-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .lds-ellipsis {
+    color: var(--primary-color);
+  }
+  .lds-ellipsis,
+  .lds-ellipsis div {
+    box-sizing: border-box;
+  }
+  .lds-ellipsis {
+    display: inline-block;
+    position: relative;
+    width: 80px;
+    height: 80px;
+  }
+  .lds-ellipsis div {
+    position: absolute;
+    top: 33.33333px;
+    width: 13.33333px;
+    height: 13.33333px;
+    border-radius: 50%;
+    background: currentColor;
+    animation-timing-function: cubic-bezier(0, 1, 1, 0);
+  }
+  .lds-ellipsis div:nth-child(1) {
+    left: 8px;
+    animation: lds-ellipsis1 0.6s infinite;
+  }
+  .lds-ellipsis div:nth-child(2) {
+    left: 8px;
+    animation: lds-ellipsis2 0.6s infinite;
+  }
+  .lds-ellipsis div:nth-child(3) {
+    left: 32px;
+    animation: lds-ellipsis2 0.6s infinite;
+  }
+  .lds-ellipsis div:nth-child(4) {
+    left: 56px;
+    animation: lds-ellipsis3 0.6s infinite;
+  }
+  @keyframes lds-ellipsis1 {
+    0% {
+      transform: scale(0);
+    }
+    100% {
+      transform: scale(1);
+    }
+  }
+  @keyframes lds-ellipsis3 {
+    0% {
+      transform: scale(1);
+    }
+    100% {
+      transform: scale(0);
+    }
+  }
+  @keyframes lds-ellipsis2 {
+    0% {
+      transform: translate(0, 0);
+    }
+    100% {
+      transform: translate(24px, 0);
+    }
+  }

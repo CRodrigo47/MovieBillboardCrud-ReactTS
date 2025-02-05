@@ -24,14 +24,16 @@ export function MovieCard({ movie }: Props) {
   }
 
   return (
-    <>
+    <div className="card-container">
      <div className="card" onClick={() => moveToEdit(movie._id)}>
       <img src={movie.poster} alt={movie.title} className="card-poster" />
-      <h1 className="card-title">{movie.title}</h1>
+      <div className="card-data">
+      <h4 className="card-title">{movie.title}</h4>
       <h4 className="card-year">{movie.year}</h4>
+      </div>
     </div>
-    <button onClick={handleDelete}>ELIMINAR</button>
-    </>
+    <button onClick={handleDelete}>Eliminar pelicula</button>
+    </div>
 
   );
 }

@@ -10,7 +10,7 @@ type Action = //Se crean las acciones que va a tener el reducer (Para poder edit
     | { type: "CHANGE_RATING"; payload: ChangeEvent<HTMLInputElement> }
     | { type: "CHANGE_VOTES"; payload: ChangeEvent<HTMLInputElement> }
     | { type: "CHANGE_DIRECTOR"; payload: ChangeEvent<HTMLInputElement> }
-    | { type: "CHANGE_PLOT"; payload: ChangeEvent<HTMLInputElement> }
+    | { type: "CHANGE_PLOT"; payload: ChangeEvent<HTMLTextAreaElement> }
     | { type: "ADD_GENRE"; payload: string }
     | { type: "REMOVE_GENRE"; payload: string }
     | { type: "CHANGE_POSTER"; payload: ChangeEvent<HTMLInputElement> }

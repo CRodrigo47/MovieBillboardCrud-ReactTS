@@ -1,6 +1,6 @@
 header{
     background-color: var(--bg-color-secondary);
-    width: 100vw;
+    width: 100%;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -10,7 +10,7 @@ header{
 
 
 .section-list{
-    width: 100vw;
+    width: 100%;
 }
 
 .nav-button{
@@ -19,7 +19,7 @@ header{
     text-align: center;
     align-items: center;
     width: 50%;
-    border-top: 1px solid var(--text-color);
+    border-top: 1px solid var(--primary-color);
     height: 3em;
     padding-bottom: 1px;
     transition: .5s;
