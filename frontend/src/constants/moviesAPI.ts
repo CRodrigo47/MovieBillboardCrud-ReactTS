@@ -1,1 +1,1 @@
-export const BASE_URL = "https://backend-movies-crodrigo47.vercel.app/api/v1/movies/" //Utilizamos la url base para poder acceder la API
+export const BASE_URL = "http://localhost:3000/api/v1/movies/" //Utilizamos la url base para poder acceder la API
